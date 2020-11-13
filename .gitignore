@@ -1,5 +1,6 @@
 data/*
-
+.gitignore.un~
+zip_file_of_data.zip
 # Created by https://www.toptal.com/developers/gitignore/api/vscode,python,windows
 # Edit at https://www.toptal.com/developers/gitignore?templates=vscode,python,windows
 
