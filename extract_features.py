@@ -35,7 +35,7 @@ def filter(data, w, LorW:bool):
       pass_ = 'lowpass'
    if LorW == False:
       pass_ = 'highpass'
-   b, a = signal.butter(1, w, pass_)
+   b, a = signal.butter(8, w, pass_)
    filtedData = signal.filtfilt(b, a, data)
    return filtedData
    #plt.plot(filtedData)
@@ -60,28 +60,28 @@ def data_fusion(data, data_frame):
       '2-9-p','2-10-p', '2-11-p', '2-12-p']]
    #p = select_data(p, data_frame)
    p = p.T.cumsum().T['2-9-p']
-   p = filter(p, 0.04,True)
+   p = filter(p, 0.02,True)
    x = data.filter(regex='x')
    x = x[['2-1-x', '2-2-x', '2-3-x', '2-4-x',
       '2-5-x', '2-6-x', '2-7-x', '2-8-x', 
       '2-9-x','2-10-x', '2-11-x', '2-12-x']]
    #x = select_data(x, data_frame)
    x = x.T.cumsum().T['2-9-x']
-   x = filter(x,  0.04,True)
+   x = filter(x, 0.02,True)
    y = data.filter(regex='y') 
    y = y[['2-1-y', '2-2-y', '2-3-y', '2-4-y',
       '2-5-y', '2-6-y', '2-7-y', '2-8-y', 
       '2-9-y','2-10-y', '2-11-y', '2-12-y']]
    #y = select_data(y, data_frame)
    y = y.T.cumsum().T['2-9-y']
-   y = filter(y, 0.04,True)
+   y = filter(y, 0.02,True)
    z = data.filter(regex='z') 
    z = z[['2-1-z', '2-2-z', '2-3-z', '2-4-z',
       '2-5-z', '2-6-z', '2-7-z', '2-8-z', 
       '2-9-z','2-10-z', '2-11-z', '2-12-z']]
    #z = select_data(z, data_frame)
    z = z.T.cumsum().T['2-9-z']
-   z = filter(z,  0.04,True)
+   z = filter(z,  0.02,True)
    label = [get_df_name(data)] * len(p)
    return pd.DataFrame({'p':p, 'x':x, 'y':y, 'z':z, 'label':label})
 
