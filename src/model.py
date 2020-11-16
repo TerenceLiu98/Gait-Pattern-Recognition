@@ -2,6 +2,7 @@ import pandas as pd
 from collections import deque
 from sklearn.svm import SVC
 import numpy as np
+from joblib import dump, load
 from sklearn.utils import shuffle
 from sklearn.decomposition import PCA
 from sklearn.pipeline import make_pipeline
@@ -20,6 +21,7 @@ def SVM_clf(X_train, X_test, y_train, y_test, X, y):
     #tn, fp, fn, tp = confusion_matrix(y_test.ravel(), prediction).ravel()
     score = accuracy_score(y_test, prediction)
     five_fold_score = cross_val_score(clf, X, y.ravel(), cv=5, scoring='accuracy')
+    dump(clf, 'model/SVM_Model.joblib')
     #print("tn, fp, fn, tp:", tn, fp, fn, tp)
     print("acc = {:.2%}".format(score))
     print("Accuracy: %0.2f (+/- %0.2f)" % (five_fold_score.mean(), five_fold_score.std() * 2))
@@ -32,6 +34,7 @@ def PCA_KNN(X_train, X_test, y_train, y_test, X, y):
     x_test_pca = pca_fit.transform(X_test)
     knn = KNeighborsClassifier(n_neighbors=3)
     knn.fit(x_train_pca, y_train.ravel())
+    dump(knn, 'model/KNN_Model.joblib')
     y_predict = knn.predict(x_test_pca)
     score = knn.score(x_test_pca, y_test.ravel(), sample_weight=None)
     five_fold_score = cross_val_score(knn, X, y.ravel(), cv=5, scoring='accuracy')
@@ -41,11 +44,12 @@ def PCA_KNN(X_train, X_test, y_train, y_test, X, y):
 
 
 
+
 if __name__ == "__main__":
-    gao = pd.read_csv('data/G1.csv')
-    wang = pd.read_csv('data/W1.csv')
-    li = pd.read_csv('data/L1.csv')
-    yan = pd.read_csv('data/Y1.csv')
+    gao = pd.read_csv('../data/G1.csv')
+    wang = pd.read_csv('../data/W1.csv')
+    li = pd.read_csv('../data/L1.csv')
+    yan = pd.read_csv('../data/Y1.csv')
 
     data = pd.concat([wang, yan, gao, li],axis=0)
     data = shuffle(data)

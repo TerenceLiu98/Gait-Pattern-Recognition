@@ -1,4 +1,4 @@
-from model import * 
+from src.model import * 
 
 gao = pd.read_csv('data/G1.csv')
 wang = pd.read_csv('data/W1.csv')

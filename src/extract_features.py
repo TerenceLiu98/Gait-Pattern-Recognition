@@ -96,10 +96,10 @@ def Accel_2_Inclination(data):
    return pd.DataFrame({'p':data['p'], 'x':Inclination_x, 'y':Inclination_y, 'z':Inclination_z, 'label':data['label']})
 
 if __name__ == "__main__":
-   gao = pd.read_csv('data/GAO_Group_2.csv').drop(['timestamp'], axis=1)
-   wang = pd.read_csv('data/WANG_Group_2.csv').drop(['timestamp'], axis=1)
-   li = pd.read_csv('data/LI_Group_2.csv')
-   yan = pd.read_csv('data/YAN_Group_2.csv')
+   gao = pd.read_csv('../data/GAO_Group_2.csv').drop(['timestamp'], axis=1)
+   wang = pd.read_csv('../data/WANG_Group_2.csv').drop(['timestamp'], axis=1)
+   li = pd.read_csv('../data/LI_Group_2.csv')
+   yan = pd.read_csv('../data/YAN_Group_2.csv')
 
    gao = gao.fillna(gao.mean())
    wang = wang.fillna(wang.mean())
@@ -111,17 +111,17 @@ if __name__ == "__main__":
    g1 = data_fusion(gao, int(len(gao)/12))
    l1 = data_fusion(li, int(len(li)/12))
 
-   y1.to_csv('data/Y1.csv',index = False)
-   w1.to_csv('data/W1.csv',index = False)
-   g1.to_csv('data/G1.csv',index = False)
-   l1.to_csv('data/L1.csv',index=False)
+   y1.to_csv('../data/Y1.csv',index = False)
+   w1.to_csv('../data/W1.csv',index = False)
+   g1.to_csv('../data/G1.csv',index = False)
+   l1.to_csv('../data/L1.csv',index=False)
 
    y1 = Accel_2_Inclination(y1)
    w1 = Accel_2_Inclination(w1)
    g1 = Accel_2_Inclination(g1)
    l1 = Accel_2_Inclination(l1)
 
-   y1.to_csv('data/Y1_In.csv',index = False)
-   w1.to_csv('data/W1_In.csv',index = False)
-   g1.to_csv('data/G1_In.csv',index = False)
-   l1.to_csv('data/L1_In.csv',index=False)
+   y1.to_csv('../data/Y1_In.csv',index = False)
+   w1.to_csv('../data/W1_In.csv',index = False)
+   g1.to_csv('../data/G1_In.csv',index = False)
+   l1.to_csv('../data/L1_In.csv',index=False)

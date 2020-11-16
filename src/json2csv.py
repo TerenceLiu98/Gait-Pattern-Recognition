@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 import os 
-path = 'data/王/第二组/'
+path = '../data/王/第二组/'
 files = os.listdir(path)[:-1]
 
 WANG = pd.DataFrame()
