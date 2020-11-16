@@ -47,7 +47,7 @@ def select_data(data, timeframe):
         tmp = data[data.columns[i]][timeframe * i:(i+1)*timeframe]
         for j in range(len(tmp)):
             data_list.append(tmp[j+i*timeframe])
-    return filter(data_list,0.6, True)
+    return filter(data_list,0.04, True)
 
 def get_df_name(df):
     name =[x for x in globals() if globals()[x] is df][0]
@@ -60,7 +60,7 @@ def data_fusion(data, data_frame):
       '2-9-p','2-10-p', '2-11-p', '2-12-p']]
    #p = select_data(p, data_frame)
    p = p.T.cumsum().T['2-9-p']
-   p = filter(p, 0.4,True)
+   p = filter(p, 0.04,True)
    x = data.filter(regex='x')
    x = x[['2-1-x', '2-2-x', '2-3-x', '2-4-x',
       '2-5-x', '2-6-x', '2-7-x', '2-8-x', 
@@ -85,6 +85,16 @@ def data_fusion(data, data_frame):
    label = [get_df_name(data)] * len(p)
    return pd.DataFrame({'p':p, 'x':x, 'y':y, 'z':z, 'label':label})
 
+def accerlation(data):
+    acc = np.sqrt(data.x**2 + data.y**2 + data.z**2)
+    return acc
+
+def Accel_2_Inclination(data):
+   Inclination_x = np.arctan((data.x / np.sqrt(data.y ** 2 + data.z ** 2))) * 180 / np.pi
+   Inclination_y = np.arctan((data.y / np.sqrt(data.x ** 2 + data.z ** 2))) * 180 / np.pi
+   Inclination_z = np.arctan((data.z / np.sqrt(data.x ** 2 + data.y ** 2))) * 180 / np.pi
+   return pd.DataFrame({'p':data['p'], 'x':Inclination_x, 'y':Inclination_y, 'z':Inclination_z, 'label':data['label']})
+
 if __name__ == "__main__":
    gao = pd.read_csv('data/GAO_Group_2.csv').drop(['timestamp'], axis=1)
    wang = pd.read_csv('data/WANG_Group_2.csv').drop(['timestamp'], axis=1)
@@ -106,3 +116,12 @@ if __name__ == "__main__":
    g1.to_csv('data/G1.csv',index = False)
    l1.to_csv('data/L1.csv',index=False)
 
+   y1 = Accel_2_Inclination(y1)
+   w1 = Accel_2_Inclination(w1)
+   g1 = Accel_2_Inclination(g1)
+   l1 = Accel_2_Inclination(l1)
+
+   y1.to_csv('data/Y1_In.csv',index = False)
+   w1.to_csv('data/W1_In.csv',index = False)
+   g1.to_csv('data/G1_In.csv',index = False)
+   l1.to_csv('data/L1_In.csv',index=False)

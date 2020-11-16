@@ -39,11 +39,13 @@ def PCA_KNN(X_train, X_test, y_train, y_test, X, y):
     print("Accuracy: %0.2f (+/- %0.2f)" % (five_fold_score.mean(), five_fold_score.std() * 2))
     print(classification_report(y_test.ravel(), y_predict))
 
+
+
 if __name__ == "__main__":
-gao = pd.read_csv('data/G1.csv')
-wang = pd.read_csv('data/W1.csv')
-li = pd.read_csv('data/L1.csv')
-yan = pd.read_csv('data/Y1.csv')
+    gao = pd.read_csv('data/G1_In.csv')
+    wang = pd.read_csv('data/W1_In.csv')
+    li = pd.read_csv('data/L1_In.csv')
+    yan = pd.read_csv('data/Y1_In.csv')
 
     data = pd.concat([wang, yan, gao, li],axis=0)
     data = shuffle(data)
