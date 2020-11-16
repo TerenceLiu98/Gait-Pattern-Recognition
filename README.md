@@ -23,7 +23,11 @@ In this experiment, in total, 4 people have participated, and there were 3 group
 ```
 # example of the data
 
-[p_1, x_1, y_1, z_1][][][][][][][][][][][p_12, x_12, y_12, z_12]
+[p_1, x_1, y_1, z_1]
+.
+.
+.
+[p_12, x_12, y_12, z_12]
 ```
 
 ## Pre-Processing
