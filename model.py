@@ -67,19 +67,31 @@ if __name__ == "__main__":
     PCA_KNN(X_train, X_test, y_train, y_test, X, y)
 
 '''
-multiclass classification
-SVM_clf(X_train, X_test, y_train, y_test)
-acc: 0.5197368421052632
- PCA_KNN(X_train, X_test, y_train, y_test)
-acc = 74.21%
+SVM Classification
+acc = 92.32%
+Accuracy: 0.95 (+/- 0.03)
               precision    recall  f1-score   support
 
-         gao       0.68      0.77      0.72       173
-          li       0.79      0.77      0.78       240
-        wang       0.81      0.68      0.74       185
-         yan       0.69      0.75      0.72       162
+         gao       0.93      0.90      0.92       175
+          li       0.88      0.98      0.93       235
+        wang       0.96      0.88      0.92       180
+         yan       0.95      0.92      0.93       178
 
-    accuracy                           0.74       760
-   macro avg       0.74      0.74      0.74       760
-weighted avg       0.75      0.74      0.74       760
+    accuracy                           0.92       768
+   macro avg       0.93      0.92      0.92       768
+weighted avg       0.93      0.92      0.92       768
+
+KNN(K=3) Classification
+acc = 91.80%
+Accuracy: 0.94 (+/- 0.02)
+              precision    recall  f1-score   support
+
+         gao       0.90      0.94      0.92       175
+          li       0.95      0.94      0.94       235
+        wang       0.91      0.87      0.89       180
+         yan       0.91      0.92      0.91       178
+
+    accuracy                           0.92       768
+   macro avg       0.92      0.92      0.92       768
+weighted avg       0.92      0.92      0.92       768
 '''
