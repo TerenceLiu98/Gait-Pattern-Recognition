@@ -71,22 +71,46 @@ SVM Classification
 acc = 92.32%
 Accuracy: 0.95 (+/- 0.03)
               precision    recall  f1-score   support
+<<<<<<< HEAD
+=======
+
+>>>>>>> e794dac9ebf24a65bc4673345f42fdc05f9ad18d
          gao       0.93      0.90      0.92       175
           li       0.88      0.98      0.93       235
         wang       0.96      0.88      0.92       180
          yan       0.95      0.92      0.93       178
+<<<<<<< HEAD
     accuracy                           0.92       768
    macro avg       0.93      0.92      0.92       768
 weighted avg       0.93      0.92      0.92       768
+=======
+
+    accuracy                           0.92       768
+   macro avg       0.93      0.92      0.92       768
+weighted avg       0.93      0.92      0.92       768
+
+>>>>>>> e794dac9ebf24a65bc4673345f42fdc05f9ad18d
 KNN(K=3) Classification
 acc = 91.80%
 Accuracy: 0.94 (+/- 0.02)
               precision    recall  f1-score   support
+<<<<<<< HEAD
+=======
+
+>>>>>>> e794dac9ebf24a65bc4673345f42fdc05f9ad18d
          gao       0.90      0.94      0.92       175
           li       0.95      0.94      0.94       235
         wang       0.91      0.87      0.89       180
          yan       0.91      0.92      0.91       178
+<<<<<<< HEAD
     accuracy                           0.92       768
    macro avg       0.92      0.92      0.92       768
 weighted avg       0.92      0.92      0.92       768
 '''
+=======
+
+    accuracy                           0.92       768
+   macro avg       0.92      0.92      0.92       768
+weighted avg       0.92      0.92      0.92       768
+'''
+>>>>>>> e794dac9ebf24a65bc4673345f42fdc05f9ad18d
