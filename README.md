@@ -9,7 +9,7 @@ In Raw data, we get four features:
 * acceleration - y
 * acceleration - z
 
-However, inside the raw data, the data is not linear, or the data is not obtained from sensors on people, but from sensors on the ground (tiles). There will be interference between tiles, that is, if the second tile will feel vibration (weak) when stepping on the first tile.
+However, inside the raw data, the data is not linear, or the data is not obtained from sensors on people, but from sensors on the ground (tiles). There will be interference between tiles, that is, if the second tile will feel vibration (weak) when stepping on the first tile. Also, the sensor itself contains noise.
 
 
 This is the trajectory:
@@ -39,6 +39,8 @@ In this experiment, in total, 4 people have participated, and there were 3 group
 
 
 ## Result
+
+*(may have small different for each run)*
 
 
 ```
@@ -70,3 +72,48 @@ Accuracy: 1.00 (+/- 0.01) {5-fold validation}
    macro avg       0.99      0.99      0.99       768
 weighted avg       0.99      0.99      0.99       768
 ```
+
+
+Repo Structure:
+``` 
+|───────────────────────────
+│   .gitignore
+│   main.py
+│   README.md
+│
+├───data
+│      G1.csv
+│      L1.csv
+│      W1.csv
+│      Y1.csv
+│   
+├───model
+│       KNN_Model.joblib
+│       Scaler.joblib
+│       SVM_Model.joblib
+│
+└───src
+        extract_features.py
+        json2csv.py
+        model.py
+```
+
+
+load pre-trained model & the Scaler: 
+```python
+from joblib import load
+SVM = load('model/SVM_Model.joblib')
+KNN = load('model/KNN_Model.joblib')
+scaler = load('model/Scaler.joblib')
+```
+do training with new data
+
+```shell
+python -B main.py
+```
+
+step of testing:
+
+1. pre-processing: follow the steps in `src/extract_feature.py`
+2. load sacler and the pre-train model
+3. do the testing, e.g. `SVM.predict(X_test)`
