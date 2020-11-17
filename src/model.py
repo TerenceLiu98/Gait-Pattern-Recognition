@@ -42,7 +42,21 @@ def PCA_KNN(X_train, X_test, y_train, y_test, X, y):
     print("Accuracy: %0.2f (+/- %0.2f)" % (five_fold_score.mean(), five_fold_score.std() * 2))
     print(classification_report(y_test.ravel(), y_predict))
 
+def data_preprocessing(data):
+    X = np.array(data[['p','x','y','z']])
+    y = np.array(data[['label']])
 
+    X_train, X_test, y_train, y_test = train_test_split(X,
+                                                        y,
+                                                        test_size=0.3,
+                                                        random_state=2020,
+                                                        shuffle=False)
+    scaler = StandardScaler()
+    scaler = scaler.fit(X_train)
+    dump(scaler, 'model/scaler.joblib')
+    X_train = scaler.transform(X_train)
+    X_test = scaler.transform(X_test)
+    return X_train, X_test, y_train, y_test
 
 
 if __name__ == "__main__":
@@ -53,19 +67,8 @@ if __name__ == "__main__":
 
     data = pd.concat([wang, yan, gao, li],axis=0)
     data = shuffle(data)
+    X_train, X_test, y_train, y_test = data_preprocessing(data)
     
-    X = np.array(data[['p','x','y','z']])
-    y = np.array(data[['label']])
-    sacler = StandardScaler()
-    sacler = sacler.fit(X)
-    X = sacler.fit_transform(X)
-
-
-    X_train, X_test, y_train, y_test = train_test_split(X,
-                                                        y,
-                                                        test_size=0.3,
-                                                        random_state=2020,
-                                                        shuffle=False)
 
     SVM_clf(X_train, X_test, y_train, y_test, X, y)
     PCA_KNN(X_train, X_test, y_train, y_test, X, y)
